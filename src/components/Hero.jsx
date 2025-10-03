@@ -53,17 +53,43 @@ export default function Hero() {
     <Box className="hero-glow" sx={{ pt: { xs: 6, md: 10 } }}>
       <Stack spacing={3} alignItems="flex-start">
         {/* Chips — staggered, randomized entrances */}
-        <Stack direction="row" spacing={1}>
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            flexWrap: "wrap",
+            gap: { xs: 0.75, sm: 1 }, // tighter on phones
+            rowGap: { xs: 0.75, sm: 1 },
+            maxWidth: "100%",
+            minWidth: 0, // allow flex children to shrink
+          }}
+        >
           {(site.hero.badges || []).map((b, i) => (
             <MotionChip
               key={b}
               label={b}
               variant="outlined"
+              size="small" // compact by default; text scaled below
+              sx={{
+                maxWidth: "100%",
+                borderRadius: 999,
+                px: { xs: 1, sm: 1.25 },
+                "& .MuiChip-label": {
+                  display: "block",
+                  px: { xs: 0.5, sm: 0.75 },
+                  fontSize: { xs: 12, sm: 13.5 },
+                  lineHeight: 1.6,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                },
+              }}
               initial={{
                 opacity: 0,
-                x: chipAnim[i]?.x ?? 0,
-                y: chipAnim[i]?.y ?? 12,
-                rotate: chipAnim[i]?.r ?? 0,
+                // clamp transforms so chips never start off-screen on mobile
+                x: Math.max(-16, Math.min(16, chipAnim[i]?.x ?? 0)),
+                y: Math.max(-8, Math.min(12, chipAnim[i]?.y ?? 12)),
+                rotate: Math.max(-8, Math.min(8, chipAnim[i]?.r ?? 0)),
                 scale: 0.98,
               }}
               animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}

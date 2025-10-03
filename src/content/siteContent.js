@@ -86,10 +86,10 @@ const site = {
     }
   ],
   showcase: [
-    { title: "Ever So Fresh", tag: "Booking Site", href: "https://www.eversofreshbarberlounge.cmom/", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-one.png?alt=media&token=ce4bf904-7d32-47ca-9f64-644c0f4390ca" },
-    { title: "Girl UpRising", tag: "Non-Profit", href: "https://www.girluprising.org", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-two.png?alt=media&token=608290bf-c316-447c-81fb-f74ec370699a" },
+    { title: "Ever So Fresh", tag: "Intelligence Powered Booking Web App", href: "https://www.eversofreshbarberlounge.cmom/", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-one.png?alt=media&token=ce4bf904-7d32-47ca-9f64-644c0f4390ca" },
+    { title: "Girl UpRising", tag: "Non-Profit Web App", href: "https://www.girluprising.org", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-two.png?alt=media&token=608290bf-c316-447c-81fb-f74ec370699a" },
     { title: "MenuOS", tag: "Restaurant Digital Menu OS", href: "https://calendly.com/kellen-utility/30min", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2FmenuOS.png?alt=media&token=151cf6fd-1925-4429-b572-f56c97f491fc" },
-    { title: "Booked", tag: "Intelligence Powered Appointment", href: "https://calendly.com/kellen-utility/30min", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fbooked-screenshot.png?alt=media&token=e9c4d9eb-7ba9-4615-999f-25087d91db36" }
+    { title: "Booked", tag: "Intelligence Powered Booking", href: "https://calendly.com/kellen-utility/30min", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fbooked-screenshot.png?alt=media&token=e9c4d9eb-7ba9-4615-999f-25087d91db36" }
   ],
   testimonials: [
     {
