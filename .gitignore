@@ -1,0 +1,103 @@
+# =========================
+# OS & editors
+# =========================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# =========================
+# Node / package managers
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+# Choose ONE lockfile to keep in the repo; if you use npm keep package-lock.json
+# and optionally ignore the others:
+# yarn.lock
+# pnpm-lock.yaml
+# bun.lockb
+
+# =========================
+# Builds / caches
+# =========================
+dist/
+build/
+**/dist/
+**/build/
+.cache/
+.tmp/
+.eslintcache
+.stylelintcache
+.nyc_output/
+coverage/
+node_modules/.cache/
+node_modules/.vite/
+.vite/
+
+# =========================
+# TypeScript (if used)
+# =========================
+*.tsbuildinfo
+
+# =========================
+# Tests (Vitest / Playwright / Cypress)
+# =========================
+.vitest/
+playwright-report/
+test-results/
+.cypress/
+cypress/screenshots/
+cypress/videos/
+
+# =========================
+# Env files (Vite & server)
+# =========================
+.env
+.env.*
+!*.example
+!.env.example
+!**/.env.example
+.envrc
+
+# =========================
+# Local tooling / IDE
+# =========================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# =========================
+# Logs & runtime stuff
+# =========================
+logs/
+*.log
+pids/
+*.pid
+*.seed
+
+# =========================
+# Deployment (Heroku)
+# =========================
+.heroku/
+# Keep Procfiles tracked:
+!Procfile
+!Procfile.dev
+!Procfile.local
+
+# =========================
+# App data written at runtime
+# (Heroku dynos are ephemeral; store uploads in S3/GCS instead)
+# =========================
+uploads/
+storage/
+
+# =========================
+# Archives
+# =========================
+*.tgz
