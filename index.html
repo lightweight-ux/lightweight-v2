@@ -2,9 +2,10 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
+    <!-- Viewport: keep your settings, add shrink-to-fit + keyboard overlay hint -->
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, shrink-to-fit=no, interactive-widget=overlays-content"
     />
 
     <title>Lightweight Agency | Websites, Stores, AI Automation & Marketing</title>
@@ -32,7 +33,6 @@
     />
 
     <!-- (Optional) Preload critical brand assets for faster LCP -->
-    <!-- Replace with actual files, or remove if unknown -->
     <!-- <link rel="preload" as="image" href="/images/hero@2x.jpg" imagesrcset="/images/hero.jpg 1x, /images/hero@2x.jpg 2x" fetchpriority="high" /> -->
     <!-- <link rel="preload" as="image" href="/logo.png" /> -->
 
@@ -79,6 +79,24 @@
 
     <!-- Performance hints for SPA boot -->
     <link rel="modulepreload" href="/src/main.jsx" />
+
+    <!-- Mobile scaling & overflow fixes -->
+    <style>
+      /* Consistent sizing and no accidental horizontal scroll */
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body, #root { height: 100%; }
+      html, body { width: 100%; overflow-x: hidden; }
+
+      /* Prevent iOS Safari from auto-zooming text and inputs */
+      body { margin: 0; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+      input, select, textarea { font-size: 16px; } /* avoids iOS zoom on focus */
+
+      /* Media scale safely on small screens */
+      img, svg, video, canvas, iframe { display: block; max-width: 100%; height: auto; }
+
+      /* Optional utility: use dynamic viewport height for mobile (safe vs 100vh) */
+      .min-h-100dvh { min-height: 100dvh; }
+    </style>
   </head>
 
   <body>
