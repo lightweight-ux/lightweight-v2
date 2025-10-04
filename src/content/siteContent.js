@@ -59,7 +59,7 @@ const site = {
     },
     {
       title: "Sites, Stores & Web Apps",
-      price: "Sites from $500 + ~$34/mo • Web Apps from $1,000 + $30/mo",
+      price: "Sites from $500 + ~$34/mo • Web Apps from $1,000 + ~$30/mo",
       bullets: [
         "Conversion-first design & copy",
         "Fast hosting + ongoing care",
@@ -67,12 +67,12 @@ const site = {
       ]
     },
     {
-      title: "AI-Powered Automation Software",
-      price: "from $1,000 + $100/mo",
+      title: "Intelligence-Powered Automation Software",
+      price: "from $1,000 + ~$100/mo",
       bullets: [
         "Bookings, invoices, menus, internal tools, new concepts",
         "Data dashboards & briefings",
-        "Integrations: Stripe/PayPal/Calendly/Google"
+        "Integrations: Stripe/PayPal/Calendly/Google/OpenAI"
       ]
     },
     {
