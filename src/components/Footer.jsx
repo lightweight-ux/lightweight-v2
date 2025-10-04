@@ -46,7 +46,7 @@ export default function Footer() {
           py: { xs: 4, md: 6 },
           px: { xs: 2, sm: 3 },
           // borderTop: "1px solid",
-          borderColor: "divider",
+          // borderColor: "divider",
           // background:
           //   "radial-gradient(1200px 400px at 50% 0%, rgba(255,255,255,0.03), rgba(0,0,0,0))",
         }}
