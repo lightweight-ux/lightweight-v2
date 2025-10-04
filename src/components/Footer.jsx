@@ -39,16 +39,16 @@ export default function Footer() {
   return (
     <Box component="footer" sx={{ mt: 8 }}>
       {/* Slim gradient bar */}
-      <Box sx={{ height: 3, background: gradient, opacity: 0.95 }} />
+      <Box sx={{ height: 3, background: "#121212", opacity: 0.95 }} />
 
       <Box
         sx={{
           py: { xs: 4, md: 6 },
           px: { xs: 2, sm: 3 },
-          // borderTop: "1px solid",
-          // borderColor: "divider",
-          // background:
-          //   "radial-gradient(1200px 400px at 50% 0%, rgba(255,255,255,0.03), rgba(0,0,0,0))",
+          borderTop: "1px solid",
+          borderColor: "divider",
+          background:
+            "radial-gradient(1200px 400px at 50% 0%, rgba(255,255,255,0.03), rgba(0,0,0,0))",
         }}
       >
         {/* Top row: Logo + socials */}
