@@ -9,14 +9,15 @@ import {
 import { useTheme } from "@mui/material/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import MusicNoteIcon from "@mui/icons-material/MusicNote"; // TikTok stand-in
+import SendRoundedIcon from "@mui/icons-material/SendRounded"; // Telegram stand-in
 import site from "../content/siteContent";
 
-/** Small, reusable “gradient ring” style around round buttons on dark bg */
-function ringSx(gradient) {
+function ringSx(gradient, bg) {
   return {
     borderRadius: "999px",
     border: "1px solid transparent",
-    backgroundImage: `linear-gradient(#121212,#121212), ${gradient}`,
+    backgroundImage: `linear-gradient(${bg},${bg}), ${gradient}`,
     backgroundOrigin: "border-box",
     backgroundClip: "padding-box, border-box",
     transition: "transform .18s ease, box-shadow .18s ease, color .18s ease",
@@ -31,13 +32,14 @@ function ringSx(gradient) {
 
 export default function Footer() {
   const theme = useTheme();
-  const gradient =
-    theme.brand?.gradient || "linear-gradient(135deg,#FF4FD8,#7B61FF,#23B0FF)";
+  const bg = theme.palette?.background?.default || "#121212";
+  // Your requested gradient
+  const gradient = "linear-gradient(135deg,#FDD835,#4FC3F7)";
 
   return (
     <Box component="footer" sx={{ mt: 8 }}>
-      {/* Slim gradient bar for a premium feel */}
-      <Box sx={{ height: 3, background: gradient, opacity: 0.9 }} />
+      {/* Slim gradient bar */}
+      <Box sx={{ height: 3, background: gradient, opacity: 0.95 }} />
 
       <Box
         sx={{
@@ -77,69 +79,52 @@ export default function Footer() {
 
           {/* Socials */}
           <Stack direction="row" spacing={1.2}>
-            {/* Facebook */}
             <IconButton
               aria-label="Facebook"
               href="https://www.facebook.com/lightweight.agency"
               target="_blank"
               rel="noopener"
               size="small"
-              sx={ringSx(gradient)}
+              sx={ringSx(gradient, bg)}
             >
               <FacebookIcon fontSize="small" />
             </IconButton>
 
-            {/* Instagram */}
             <IconButton
               aria-label="Instagram"
               href="https://www.instagram.com/lightweight.agency/"
               target="_blank"
               rel="noopener"
               size="small"
-              sx={ringSx(gradient)}
+              sx={ringSx(gradient, bg)}
             >
               <InstagramIcon fontSize="small" />
             </IconButton>
 
-            {/* TikTok (simple glyph “Note” fallback, styled the same ring) */}
+            {/* TikTok (using MusicNote as a clear, lightweight stand-in) */}
             <IconButton
               aria-label="TikTok"
               href="https://www.tiktok.com/@lightweight_agency?lang=en"
               target="_blank"
               rel="noopener"
               size="small"
-              sx={ringSx(gradient)}
+              sx={ringSx(gradient, bg)}
+              title="TikTok"
             >
-              {/* Minimal TikTok glyph via inline SVG to avoid extra deps */}
-              <Box
-                component="svg"
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="currentColor"
-              >
-                <path d="M14.5 3c.5 2.3 2.1 4.1 4.4 4.7v2.3c-1.6-.1-3.2-.6-4.4-1.6v6.3c0 3.2-2.6 5.8-5.8 5.8S3 17.9 3 14.7c0-3.2 2.6-5.8 5.8-5.8.5 0 1 .1 1.5.2v2.6c-.5-.2-1-.3-1.5-.3-1.8 0-3.3 1.5-3.3 3.3S6 18 7.8 18s3.3-1.5 3.3-3.3V3h3.4z" />
-              </Box>
+              <MusicNoteIcon fontSize="small" />
             </IconButton>
 
-            {/* Telegram (paper-plane inline SVG) */}
+            {/* Telegram (using SendRounded plane) */}
             <IconButton
               aria-label="Telegram"
               href="https://t.me/+Y80mkW_QuQBmNDYx"
               target="_blank"
               rel="noopener"
               size="small"
-              sx={ringSx(gradient)}
+              sx={ringSx(gradient, bg)}
+              title="Telegram"
             >
-              <Box
-                component="svg"
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="currentColor"
-              >
-                <path d="M21.9 3.3c.3-.1.7.1.8.4.1.3 0 .7-.3.9l-3.9 3.8c-.2.2-.6.2-.8 0l-3-2.7-2.9 11c-.1.4-.6.6-.9.4-.3-.1-.5-.5-.4-.8l2.9-11.2-4.7 1.8c-.3.1-.7 0-.8-.4-.1-.3 0-.7.3-.8L21.9 3.3z" />
-              </Box>
+              <SendRoundedIcon fontSize="small" />
             </IconButton>
           </Stack>
         </Stack>
