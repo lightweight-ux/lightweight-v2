@@ -20,10 +20,7 @@ const MotionTypography = motion(Typography);
 const MotionChip = motion(Chip);
 const MotionImg = motion.img;
 
-// Smooth, slower ease
 const EASE_SLOW = [0.22, 1, 0.36, 1];
-
-// Stable pseudo-random (per index) so animation feels organic but consistent
 const pr = (i, salt = 1) => {
   const x = Math.sin((i + 1) * 997 * salt) * 10000;
   return x - Math.floor(x);
@@ -32,9 +29,9 @@ const pr = (i, salt = 1) => {
 export default function Hero() {
   const items = site.hero.tiles || [];
 
-  // Dialog state (mimics your FeaturedWork behavior)
   const [open, setOpen] = React.useState(false);
   const [idx, setIdx] = React.useState(0);
+  const [hover, setHover] = React.useState(null); // 👈 match FeaturedWork
 
   const view = (i) => {
     setIdx(i);
@@ -52,7 +49,6 @@ export default function Hero() {
 
   const sel = items[idx] || null;
 
-  // Keyboard + swipe support while dialog is open
   React.useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -72,49 +68,28 @@ export default function Hero() {
     if (dx < -50) next();
   };
 
-  // Randomized animation params for chips
   const chipAnim = React.useMemo(
     () =>
-      (site.hero.badges || []).map((_, i) => {
-        return {
-          x: (pr(i, 2) - 0.5) * 28, // -14..14
-          y: (pr(i, 3) - 0.5) * 32, // -16..16
-          r: (pr(i, 4) - 0.5) * 8, // -4..4 deg
-          delay: 0.2 + i * 0.14 + pr(i, 5) * 0.25,
-          duration: 1.1 + pr(i, 6) * 0.7,
-        };
-      }),
+      (site.hero.badges || []).map((_, i) => ({
+        x: (pr(i, 2) - 0.5) * 28,
+        y: (pr(i, 3) - 0.5) * 32,
+        r: (pr(i, 4) - 0.5) * 8,
+        delay: 0.2 + i * 0.14 + pr(i, 5) * 0.25,
+        duration: 1.1 + pr(i, 6) * 0.7,
+      })),
     [site.hero.badges?.length]
   );
 
-  // Randomized animation params for tiles
   const tileAnim = React.useMemo(
     () =>
-      items.map((_, i) => {
-        return {
-          x: (pr(i, 7) - 0.5) * 40, // -20..20
-          y: 20 + pr(i, 8) * 30, // 20..50
-          r: (pr(i, 9) - 0.5) * 6, // -3..3 deg
-          s: 0.95 + pr(i, 10) * 0.08, // 0.95..1.03
-          delay: 0.45 + i * 0.12 + pr(i, 11) * 0.25,
-          duration: 1.2 + pr(i, 12) * 0.9,
-        };
-      }),
-    [items.length]
-  );
-
-  // Random hover stretch per-tile (organic but bounded)
-  const hoverAnim = React.useMemo(
-    () =>
-      items.map((_, i) => {
-        const tallBias = pr(i, 13) > 0.35; // ~65% prefer taller stretch
-        const sx = 1 + 0.02 + pr(i, 14) * 0.08; // 1.02–1.10
-        const syBase = tallBias ? 0.12 : 0.06;
-        const sy = 1 + syBase + pr(i, 15) * (tallBias ? 0.22 : 0.1); // 1.18–1.34 or 1.12–1.16
-        const skewY = (pr(i, 16) - 0.5) * 2.5; // -1.25..1.25°
-        const lift = -4 - pr(i, 17) * 10; // -4..-14px (subtle lift while stretching)
-        return { sx, sy, skewY, lift };
-      }),
+      items.map((_, i) => ({
+        x: (pr(i, 7) - 0.5) * 40,
+        y: 20 + pr(i, 8) * 30,
+        r: (pr(i, 9) - 0.5) * 6,
+        s: 0.95 + pr(i, 10) * 0.08,
+        delay: 0.45 + i * 0.12 + pr(i, 11) * 0.25,
+        duration: 1.2 + pr(i, 12) * 0.9,
+      })),
     [items.length]
   );
 
@@ -122,7 +97,7 @@ export default function Hero() {
     <>
       <Box className="hero-glow" sx={{ pt: { xs: 6, md: 10 } }}>
         <Stack spacing={3} alignItems="flex-start">
-          {/* Chips — staggered, randomized entrances */}
+          {/* Chips */}
           <Stack
             direction="row"
             spacing={1}
@@ -215,107 +190,133 @@ export default function Hero() {
           </MotionBox>
         </Stack>
 
-        {/* Tiles — clickable to open dialog */}
+        {/* Tiles — updated to match FeaturedWork behavior */}
         <MotionBox
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 0.6, ease: EASE_SLOW }}
         >
           <Box
+            id="work"
             sx={{
+              "--row": "220px", // 👈 fixed row height
               mt: 6,
               display: "grid",
-              gridTemplateColumns: "repeat(12, 1fr)",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(3, 1fr)",
+              }, // 👈 responsive cols like FeaturedWork
+              gridAutoRows: "var(--row)", // 👈 enables row-span trick
               gap: 2,
             }}
           >
-            {items.map((t, i) => (
-              <MotionBox
-                key={(t.src || "") + i}
-                className="card-blur"
-                initial={{
-                  opacity: 0,
-                  x: tileAnim[i]?.x ?? 0,
-                  y: tileAnim[i]?.y ?? 24,
-                  rotate: tileAnim[i]?.r ?? 0,
-                  scale: tileAnim[i]?.s ?? 0.98,
-                }}
-                whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{
-                  duration: tileAnim[i]?.duration ?? 1.4,
-                  delay: tileAnim[i]?.delay ?? 0.6,
-                  ease: EASE_SLOW,
-                }}
-                onClick={() => view(i)}
-                whileHover={{
-                  scaleX: hoverAnim[i]?.sx ?? 1.06,
-                  scaleY: hoverAnim[i]?.sy ?? 1.14,
-                  skewY: hoverAnim[i]?.skewY ?? 0,
-                  y: hoverAnim[i]?.lift ?? -8,
-                  zIndex: 3,
-                  boxShadow: "0 24px 64px rgba(0,0,0,0.45)",
-                }}
-                style={{ willChange: "transform" }}
-                sx={{
-                  gridColumn: {
-                    xs: "span 12",
-                    sm: "span 6",
-                    md: i % 3 === 0 ? "span 5" : "span 3",
-                  },
-                  height: 160,
-                  borderRadius: 3,
-                  position: "relative",
-                  overflow: "hidden",
-                  cursor: "pointer",
-                }}
-              >
-                {/* Image fill */}
-                <Box
-                  component="img"
-                  src={t.src}
-                  alt={t.alt || ""}
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: t.objectPosition || "center",
-                    display: "block",
+            {items.map((t, i) => {
+              const active = hover === (t.id || i);
+              return (
+                <motion.div
+                  key={(t.src || "") + i}
+                  layout
+                  style={{ gridRow: active ? "span 2" : "span 1" }} // 👈 grow on hover
+                  transition={{
+                    layout: { duration: 0.45, type: "spring", bounce: 0.2 },
                   }}
-                />
-                {/* Soft gradient overlay */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.25) 100%)",
-                    pointerEvents: "none",
-                  }}
-                />
-                {t.caption && (
-                  <Typography
-                    variant="caption"
+                  onHoverStart={() => setHover(t.id || i)}
+                  onHoverEnd={() => setHover(null)}
+                >
+                  <MotionBox
+                    className="card-blur"
+                    onClick={() => view(i)}
+                    whileHover={{ boxShadow: "0 12px 40px rgba(0,0,0,0.35)" }}
+                    transition={{ duration: 0.25 }}
                     sx={{
-                      position: "absolute",
-                      left: 12,
-                      bottom: 10,
-                      color: "rgba(255,255,255,0.95)",
-                      fontWeight: 700,
+                      height: "100%", // 👈 allow row-span to control height
+                      borderRadius: 3,
+                      position: "relative",
+                      overflow: "hidden",
+                      cursor: "pointer",
                     }}
                   >
-                    {t.caption}
-                  </Typography>
-                )}
-              </MotionBox>
-            ))}
+                    {/* Scaled image on hover (like FeaturedWork) */}
+                    <MotionImg
+                      src={t.src}
+                      alt={t.alt || ""}
+                      initial={false}
+                      animate={{ scale: active ? 1.08 : 1 }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+
+                    {/* Deepening gradient overlay on hover */}
+                    <MotionBox
+                      initial={false}
+                      animate={{ opacity: active ? 1 : 0.8 }}
+                      transition={{ duration: 0.35 }}
+                      sx={{
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                          "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 65%, rgba(0,0,0,.75) 100%)",
+                      }}
+                    />
+
+                    {/* Bottom caption + inline CTA */}
+                    <motion.div
+                      initial={{ opacity: 0.85, y: 10 }}
+                      animate={{
+                        opacity: active ? 1 : 0.85,
+                        y: active ? 0 : 10,
+                      }}
+                      transition={{ duration: 0.35 }}
+                      style={{
+                        position: "absolute",
+                        left: 16,
+                        right: 16,
+                        bottom: 16,
+                      }}
+                    >
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        spacing={1}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{ fontWeight: 800, mb: 4 }}
+                        >
+                          {t.caption || t.alt || "Project"}
+                        </Typography>
+                        <Button
+                          size="small"
+                          variant="contained"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Explore Pricing
+                        </Button>
+                      </Stack>
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        sx={{ opacity: 0.9 }}
+                      >
+                        Hover to preview • Click for snapshot
+                      </Typography>
+                    </motion.div>
+                  </MotionBox>
+                </motion.div>
+              );
+            })}
           </Box>
         </MotionBox>
       </Box>
 
-      {/* --- SLEEK DIALOG (mimics your reference) ---------------------------- */}
+      {/* Dialog (unchanged aside from using `items`/idx) */}
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
@@ -350,7 +351,6 @@ export default function Hero() {
                 overflow: "hidden",
               }}
             >
-              {/* Background image with grayscale + contrast */}
               <AnimatePresence mode="wait">
                 <MotionImg
                   key={(sel.src || "") + idx}
@@ -369,7 +369,6 @@ export default function Hero() {
                 />
               </AnimatePresence>
 
-              {/* Warm “moon” spotlight & subtle side vignette */}
               <Box
                 sx={{
                   pointerEvents: "none",
@@ -389,7 +388,6 @@ export default function Hero() {
                 }}
               />
 
-              {/* Headline block (split on space like reference) */}
               <Box
                 sx={{
                   position: "absolute",
@@ -452,7 +450,6 @@ export default function Hero() {
                 </Stack>
               </Box>
 
-              {/* Slim side rails: PREV / NEXT */}
               <IconButton
                 onClick={prev}
                 aria-label="Previous"
@@ -484,7 +481,6 @@ export default function Hero() {
                 <ArrowForwardIosIcon />
               </IconButton>
 
-              {/* Close button */}
               <IconButton
                 onClick={() => setOpen(false)}
                 aria-label="Close"
