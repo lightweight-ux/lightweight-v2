@@ -103,6 +103,21 @@ export default function Hero() {
     [items.length]
   );
 
+  // Random hover stretch per-tile (organic but bounded)
+  const hoverAnim = React.useMemo(
+    () =>
+      items.map((_, i) => {
+        const tallBias = pr(i, 13) > 0.35; // ~65% prefer taller stretch
+        const sx = 1 + 0.02 + pr(i, 14) * 0.08; // 1.02–1.10
+        const syBase = tallBias ? 0.12 : 0.06;
+        const sy = 1 + syBase + pr(i, 15) * (tallBias ? 0.22 : 0.1); // 1.18–1.34 or 1.12–1.16
+        const skewY = (pr(i, 16) - 0.5) * 2.5; // -1.25..1.25°
+        const lift = -4 - pr(i, 17) * 10; // -4..-14px (subtle lift while stretching)
+        return { sx, sy, skewY, lift };
+      }),
+    [items.length]
+  );
+
   return (
     <>
       <Box className="hero-glow" sx={{ pt: { xs: 6, md: 10 } }}>
@@ -233,6 +248,15 @@ export default function Hero() {
                   ease: EASE_SLOW,
                 }}
                 onClick={() => view(i)}
+                whileHover={{
+                  scaleX: hoverAnim[i]?.sx ?? 1.06,
+                  scaleY: hoverAnim[i]?.sy ?? 1.14,
+                  skewY: hoverAnim[i]?.skewY ?? 0,
+                  y: hoverAnim[i]?.lift ?? -8,
+                  zIndex: 3,
+                  boxShadow: "0 24px 64px rgba(0,0,0,0.45)",
+                }}
+                style={{ willChange: "transform" }}
                 sx={{
                   gridColumn: {
                     xs: "span 12",
