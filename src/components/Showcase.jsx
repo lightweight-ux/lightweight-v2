@@ -159,7 +159,7 @@ export default function Showcase() {
   const theme = useTheme();
   const brandGradient =
     theme.brand?.gradient ||
-    "linear-gradient(135deg, #FDD835 0%, #FFB300 100%)";
+    "linear-gradient(135deg, #FDD835 0%, #FF8F00 100%)";
   return (
     <Box
       id="work"

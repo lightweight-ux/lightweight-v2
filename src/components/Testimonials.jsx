@@ -6,7 +6,7 @@ export default function Testimonials() {
   const theme = useTheme();
   const brandGradient =
     theme.brand?.gradient ||
-    "linear-gradient(135deg, #FDD835 0%, #FFB300 100%)";
+    "linear-gradient(135deg, #FDD835 0%, #FF8F00 100%)";
   return (
     <Box sx={{ mt: { xs: 6, md: 10 } }}>
       <Typography

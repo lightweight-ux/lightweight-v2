@@ -23,7 +23,7 @@ export default function Services() {
   const theme = useTheme();
   const brandGradient =
     theme.brand?.gradient ||
-    "linear-gradient(135deg, #FDD835 0%, #FFB300 100%)";
+    "linear-gradient(135deg, #FDD835 0%, #FF8F00 100%)";
 
   // Append a 4th card without touching site.content
   const services = React.useMemo(() => {
