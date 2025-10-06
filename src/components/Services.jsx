@@ -23,7 +23,11 @@ export default function Services() {
   const theme = useTheme();
   const brandGradient =
     theme.brand?.gradient ||
-    "linear-gradient(135deg, #FDD835 0%, #FF8F00 100%)";
+    "linear-gradient(135deg, #FDD835 0%, #FFB300 100%)"; // amber brand gradient
+  const cardBg =
+    theme.brand?.bg ||
+    theme.palette.background?.paper ||
+    (theme.palette.mode === "dark" ? "#121212" : "#ffffff");
 
   // Append a 4th card without touching site.content
   const services = React.useMemo(() => {
@@ -103,10 +107,7 @@ export default function Services() {
             <Grid item xs={12} md={6} key={s.title}>
               <MotionPaper
                 variants={cardItem}
-                whileHover={{
-                  y: -6,
-                  scale: 1.01,
-                }}
+                whileHover={{ y: -6, scale: 1.01 }}
                 transition={{ type: "spring", stiffness: 240, damping: 18 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -123,9 +124,9 @@ export default function Services() {
                   borderRadius: 3,
                   position: "relative",
                   overflow: "hidden",
-                  // Gradient border
                   border: "1px solid transparent",
-                  backgroundImage: `${brandGradient}`,
+                  // Theme background (inside) + brand gradient border (outside)
+                  backgroundImage: `linear-gradient(${cardBg}, ${cardBg}), ${brandGradient}`,
                   backgroundOrigin: "border-box",
                   backgroundClip: "padding-box, border-box",
                   boxShadow:
