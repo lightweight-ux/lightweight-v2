@@ -292,13 +292,6 @@ export default function Hero() {
                         >
                           {t.caption || t.alt || "Project"}
                         </Typography>
-                        <Button
-                          size="small"
-                          variant="contained"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Explore Pricing
-                        </Button>
                       </Stack>
                       <Typography
                         variant="caption"
