@@ -101,6 +101,7 @@ export default function Nav() {
           backdropFilter: "blur(10px)",
           borderBottom: "1px solid rgba(255,255,255,0.08)",
           zIndex: (t) => t.zIndex.appBar,
+          height: { xs: 64, md: 72 },
         }}
       >
         <Toolbar sx={{ gap: 2, minHeight: { xs: 64, md: 72 } }}>

@@ -112,7 +112,7 @@ export default function Services() {
                   overflow: "hidden",
                   // Gradient border
                   border: "1px solid transparent",
-                  backgroundImage: `linear-gradient(#121212,#121212), ${brandGradient}`,
+                  backgroundImage: `${site.color.primary}`,
                   backgroundOrigin: "border-box",
                   backgroundClip: "padding-box, border-box",
                   boxShadow:
