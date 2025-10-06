@@ -40,10 +40,6 @@ const site = {
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fproduct-box.jpg?alt=media&token=34e7581f-df26-4080-bcc2-bd9d34f8bc1f",
         alt: "Lightweight product box"
-      },
-      {
-        src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fdim-screen-lightweight.jpg?alt=media&token=58b22ebc-df07-4254-b9f8-d67b5c56ae45",
-        alt: "Laptop on desk"
       }
     ]
   },
