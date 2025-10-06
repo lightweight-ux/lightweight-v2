@@ -112,7 +112,7 @@ export default function Services() {
                   overflow: "hidden",
                   // Gradient border
                   border: "1px solid transparent",
-                  backgroundImage: `${site.color.primary}`,
+                  backgroundImage: `${theme.palette.primary.main}`,
                   backgroundOrigin: "border-box",
                   backgroundClip: "padding-box, border-box",
                   boxShadow:
