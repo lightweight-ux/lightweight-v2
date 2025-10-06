@@ -125,7 +125,7 @@ export default function Services() {
                   overflow: "hidden",
                   // Gradient border
                   border: "1px solid transparent",
-                  backgroundImage: `${theme.palette.primary.main}`,
+                  backgroundImage: `${brandGradient}`,
                   backgroundOrigin: "border-box",
                   backgroundClip: "padding-box, border-box",
                   boxShadow:
@@ -137,7 +137,7 @@ export default function Services() {
                     inset: 0,
                     background: spot[id]
                       ? `radial-gradient(300px 300px at ${spot[id]}, ${alpha(
-                          theme.palette.primary.main,
+                          brandGradient,
                           0.12
                         )} 0%, transparent 60%)`
                       : "transparent",
