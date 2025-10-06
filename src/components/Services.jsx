@@ -137,7 +137,7 @@ export default function Services() {
                     inset: 0,
                     background: spot[id]
                       ? `radial-gradient(300px 300px at ${spot[id]}, ${alpha(
-                          brandGradient,
+                          theme.palette.primary.main,
                           0.12
                         )} 0%, transparent 60%)`
                       : "transparent",
