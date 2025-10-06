@@ -52,7 +52,7 @@ function AnimatedCard({ card }) {
         })
         .then(() => {
           controls.start({
-            y: [0, -floatAmp, 0, floatAmp, 0],
+            y: [0, -floatAmp, 0, floatAmp, 0], // transform-only (no layout)
             rotate: [0, rotAmp, 0, -rotAmp, 0],
             transition: {
               duration: floatDur,
@@ -102,17 +102,24 @@ function AnimatedCard({ card }) {
         minHeight: 260,
         display: "flex",
         flexDirection: "column",
+        // ↓↓↓ Prevent layout/scroll jank
+        willChange: "transform, opacity",
+        transform: "translate3d(0,0,0)",
+        backfaceVisibility: "hidden",
+        contain: "paint",
+        overflowAnchor: "none",
         boxShadow: (t) =>
           `0 8px 30px ${
             t.palette.mode === "dark" ? "rgba(0,0,0,0.45)" : "rgba(0,0,0,0.12)"
           }`,
       }}
     >
-      {/* Image */}
+      {/* Image (fixed height already reserves space; no CLS) */}
       <Box
         component="img"
         src={card.src}
         alt={card.title}
+        loading="lazy"
         sx={{
           width: "100%",
           height: 200,
@@ -120,6 +127,9 @@ function AnimatedCard({ card }) {
           display: "block",
           userSelect: "none",
           pointerEvents: "none",
+          // Optional: composite the image too for ultra-smoothness
+          willChange: "transform",
+          transform: "translateZ(0)",
         }}
       />
 
@@ -144,7 +154,15 @@ function AnimatedCard({ card }) {
 
 export default function Showcase() {
   return (
-    <Box id="work" sx={{ mt: { xs: 6, md: 10 } }}>
+    <Box
+      id="work"
+      sx={{
+        mt: { xs: 6, md: 10 },
+        // ↓↓↓ Keep scrollbar space stable; disable scroll anchoring here
+        scrollbarGutter: "stable both-edges",
+        overflowAnchor: "none",
+      }}
+    >
       <Typography variant="h2" sx={{ mb: 2 }}>
         Selected work
       </Typography>
