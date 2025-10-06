@@ -22,24 +22,8 @@ const MotionListItem = motion(ListItem);
 export default function Services() {
   const theme = useTheme();
   const brandGradient =
-    theme.brand?.gradient || "linear-gradient(135deg,#FF4FD8,#7B61FF,#23B0FF)";
-
-  // Append a 4th card without touching site.content
-  const services = React.useMemo(() => {
-    const base = [...site.services];
-    base.push({
-      title: "Launch Accelerator",
-      price: "From $999",
-      bullets: [
-        "1–2 week go-live plan",
-        "CRO-focused homepage + landing",
-        "Lead capture + booking",
-        "Analytics + heatmaps wired",
-        "SEO/OG ready, shareable assets",
-      ],
-    });
-    return base;
-  }, []);
+    theme.brand?.gradient ||
+    "linear-gradient(135deg, #FDD835 0%, #FFB300 100%)";
 
   // Minimal “spotlight” state per card
   const [spot, setSpot] = React.useState({});
@@ -65,7 +49,21 @@ export default function Services() {
 
   return (
     <Box id="services" sx={{ mt: { xs: 6, md: 10 } }}>
-      <Typography variant="h2" sx={{ mb: 2, fontWeight: 900 }}>
+      <Typography
+        variant="h2"
+        sx={{
+          background: brandGradient,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          color: "transparent",
+          fontWeight: 900,
+          fontSize: "clamp(1.625rem, 3.6vw, 2.5rem)",
+          letterSpacing: "-0.02em",
+          lineHeight: 1.2,
+          mb: 2,
+        }}
+      >
         What we do
       </Typography>
       <Typography color="text.secondary" sx={{ mb: 4, maxWidth: 800 }}>

@@ -3,6 +3,7 @@ import * as React from "react";
 import { Box, Grid, Paper, Stack, Typography, Link } from "@mui/material";
 import site from "../content/siteContent";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { useTheme, alpha } from "@mui/material/styles";
 
 const MotionPaper = motion(Paper);
 
@@ -138,7 +139,9 @@ function AnimatedCard({ card }) {
         <Typography variant="h5" sx={{ fontWeight: 800, lineHeight: 1.2 }}>
           {card.title}
         </Typography>
-        <Typography color="text.secondary">{card.tag}</Typography>
+        <Typography color="text.secondary" sx={{ mb: "4px" }}>
+          {card.tag}
+        </Typography>
         <Link
           href={card.href}
           target="_blank"
@@ -153,6 +156,10 @@ function AnimatedCard({ card }) {
 }
 
 export default function Showcase() {
+  const theme = useTheme();
+  const brandGradient =
+    theme.brand?.gradient ||
+    "linear-gradient(135deg, #FDD835 0%, #FFB300 100%)";
   return (
     <Box
       id="work"
@@ -163,7 +170,21 @@ export default function Showcase() {
         overflowAnchor: "none",
       }}
     >
-      <Typography variant="h2" sx={{ mb: 2 }}>
+      <Typography
+        variant="h2"
+        sx={{
+          background: brandGradient,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          color: "transparent",
+          fontWeight: 900,
+          fontSize: "clamp(1.625rem, 3.6vw, 2.5rem)",
+          letterSpacing: "-0.02em",
+          lineHeight: 1.2,
+          mb: 2,
+        }}
+      >
         Selected work
       </Typography>
       <Grid container spacing={2}>
