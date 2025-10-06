@@ -27,15 +27,15 @@ const site = {
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-profile-pic-size-2.png?alt=media&token=7b7654c5-bbf5-4096-95b1-a2ca72da73f0",
-        alt: "Team collaboration"
+        alt: "Lightweight icon"
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fpexels-harold-vasquez-853421-2653362%20(2).jpg?alt=media&token=66e49f4b-2961-42e0-811e-7d669250ba2c",
-        alt: "Design sketches"
+        alt: "Software developer at work"
       },
       {
-        src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-        alt: "App dashboard"
+        src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Ftechnek%2Fpexels-edmond-dantes-8068257%20(1).jpg?alt=media&token=0751014f-f6d7-4520-b876-7df906bcf5d6",
+        alt: "Consulting with a client"
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fproduct-box.jpg?alt=media&token=34e7581f-df26-4080-bcc2-bd9d34f8bc1f",
@@ -59,7 +59,7 @@ const site = {
     },
     {
       title: "Sites, Stores & Web Apps",
-      price: "Sites from $500 + ~$34/mo • Web Apps from $1,000 + ~$30/mo",
+      price: "Sites from $500 + ~$34/mo • Intelligent Apps from $1,000 + ~$30/mo",
       bullets: [
         "Conversion-first design & copy",
         "Fast hosting + ongoing care",
@@ -72,7 +72,7 @@ const site = {
       bullets: [
         "Bookings, invoices, menus, internal tools, new concepts",
         "Data dashboards & briefings",
-        "Integrations: Stripe/PayPal/Calendly/Google/OpenAI"
+        "Integrations: Stripe/PayPal/Calendly/Google/OpenAI/etc"
       ]
     },
     {
@@ -81,7 +81,7 @@ const site = {
       bullets: [
         "Brand positioning, messaging & value props",
         "Go-to-market plans, campaign roadmaps & content calendars",
-        "Analytics audits, KPI frameworks & conversion optimization"
+        "Business Process Optimization"
       ]
     }
   ],
