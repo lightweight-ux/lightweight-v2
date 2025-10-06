@@ -55,7 +55,7 @@ const site = {
     },
     {
       title: "Sites, Stores & Web Apps",
-      price: "Sites from $500 + ~$34/mo • Intelligent Apps from $1,000 + ~$30/mo",
+      price: "Sites from $500 + ~$34/mo • Web Apps from $1,000 + ~$30/mo",
       bullets: [
         "Conversion-first design & copy",
         "Fast hosting + ongoing care",
@@ -69,15 +69,6 @@ const site = {
         "Bookings, invoices, menus, internal tools, new concepts",
         "Data dashboards & briefings",
         "Integrations: Stripe/PayPal/Calendly/Google/OpenAI/etc"
-      ]
-    },
-    {
-      title: "Marketing Strategy & Consulting",
-      price: "Custom scope",
-      bullets: [
-        "Brand positioning, messaging & value props",
-        "Go-to-market plans, campaign roadmaps & content calendars",
-        "Business Process Optimization"
       ]
     }
   ],

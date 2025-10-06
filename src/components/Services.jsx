@@ -25,6 +25,21 @@ export default function Services() {
     theme.brand?.gradient ||
     "linear-gradient(135deg, #FDD835 0%, #FFB300 100%)";
 
+  // Append a 4th card without touching site.content
+  const services = React.useMemo(() => {
+    const base = [...site.services];
+    base.push({
+      title: "Marketing Strategy & Consulting",
+      price: "Custom scope • Starting at $65/hr",
+      bullets: [
+        "Brand positioning, messaging & value props",
+        "Go-to-market plans, campaign roadmaps & content calendars",
+        "Business Process Optimization",
+      ],
+    });
+    return base;
+  }, []);
+
   // Minimal “spotlight” state per card
   const [spot, setSpot] = React.useState({});
 
