@@ -51,6 +51,14 @@ export default function Hero() {
 
   const sel = items[idx] || null;
 
+  // --- NEW: compute a single active key so one accordion item is always active ---
+  // If hover is null we fall back to the currently selected idx (or items[idx].id).
+  const activeKey = React.useMemo(() => {
+    if (hover !== null && hover !== undefined) return hover;
+    // prefer item id if present so comparisons match how hover is set
+    return items[idx]?.id ?? idx;
+  }, [hover, idx, items]);
+
   React.useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -212,7 +220,9 @@ export default function Hero() {
             aria-label="Featured tiles"
           >
             {items.map((t, i) => {
-              const isActive = hover === (t.id || i);
+              // use item's id when available to match hover values; otherwise fallback to index
+              const tileKey = t.id ?? i;
+              const isActive = activeKey === tileKey;
               // flex ratio - active gets more space
               const flexActive = 6;
               const flexInactive = 1.2;
@@ -221,9 +231,9 @@ export default function Hero() {
                 <motion.div
                   key={(t.src || "") + i}
                   layout
-                  onMouseEnter={() => setHover(t.id || i)}
+                  onMouseEnter={() => setHover(t.id ?? i)}
                   onMouseLeave={() => setHover(null)}
-                  onFocus={() => setHover(t.id || i)}
+                  onFocus={() => setHover(t.id ?? i)}
                   onBlur={() => setHover(null)}
                   style={{
                     display: "flex",
