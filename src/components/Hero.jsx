@@ -1,3 +1,4 @@
+// client/src/components/Hero.jsx
 import * as React from "react";
 import {
   Box,
@@ -21,6 +22,7 @@ const MotionChip = motion(Chip);
 const MotionImg = motion.img;
 
 const EASE_SLOW = [0.22, 1, 0.36, 1];
+
 const pr = (i, salt = 1) => {
   const x = Math.sin((i + 1) * 997 * salt) * 10000;
   return x - Math.floor(x);
@@ -31,7 +33,7 @@ export default function Hero() {
 
   const [open, setOpen] = React.useState(false);
   const [idx, setIdx] = React.useState(0);
-  const [hover, setHover] = React.useState(null); // 👈 match FeaturedWork
+  const [hover, setHover] = React.useState(null);
 
   const view = (i) => {
     setIdx(i);
@@ -190,60 +192,76 @@ export default function Hero() {
           </MotionBox>
         </Stack>
 
-        {/* Tiles — updated to match FeaturedWork behavior */}
+        {/* — HORIZONTAL ACCORDION TILES — */}
         <MotionBox
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 0.6, ease: EASE_SLOW }}
+          sx={{ mt: 6 }}
         >
           <Box
-            id="work"
             sx={{
-              "--row": "220px", // 👈 fixed row height
-              mt: 6,
-              display: "grid",
-              gridTemplateColumns: {
-                xs: "1fr",
-                sm: "repeat(2, 1fr)",
-                md: "repeat(3, 1fr)",
-              }, // 👈 responsive cols like FeaturedWork
-              gridAutoRows: "var(--row)", // 👈 enables row-span trick
-              gap: 2,
+              display: "flex",
+              gap: 12,
+              alignItems: "stretch",
+              overflow: "hidden",
+              // give a subtle perspective on large screens
+              px: { xs: 0, md: 2 },
             }}
+            role="list"
+            aria-label="Featured tiles"
           >
             {items.map((t, i) => {
-              const active = hover === (t.id || i);
+              const isActive = hover === (t.id || i);
+              // flex ratio - active gets more space
+              const flexActive = 6;
+              const flexInactive = 1.2;
+
               return (
                 <motion.div
                   key={(t.src || "") + i}
                   layout
-                  style={{ gridRow: active ? "span 2" : "span 1" }} // 👈 grow on hover
-                  transition={{
-                    layout: { duration: 0.45, type: "spring", bounce: 0.2 },
+                  onMouseEnter={() => setHover(t.id || i)}
+                  onMouseLeave={() => setHover(null)}
+                  onFocus={() => setHover(t.id || i)}
+                  onBlur={() => setHover(null)}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    flex: isActive ? flexActive : flexInactive,
+                    minWidth: 140,
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    cursor: "pointer",
+                    willChange: "flex, transform",
                   }}
-                  onHoverStart={() => setHover(t.id || i)}
-                  onHoverEnd={() => setHover(null)}
+                  transition={{
+                    layout: {
+                      duration: 0.55,
+                      type: "spring",
+                      bounce: 0.12,
+                      damping: 16,
+                    },
+                  }}
                 >
                   <MotionBox
-                    className="card-blur"
                     onClick={() => view(i)}
-                    whileHover={{ boxShadow: "0 12px 40px rgba(0,0,0,0.35)" }}
-                    transition={{ duration: 0.25 }}
+                    whileTap={{ scale: 0.995 }}
                     sx={{
-                      height: "100%", // 👈 allow row-span to control height
-                      borderRadius: 3,
                       position: "relative",
+                      height: { xs: 220, sm: 300, md: 360 },
+                      borderRadius: 2,
                       overflow: "hidden",
-                      cursor: "pointer",
+                      display: "block",
+                      width: "100%",
                     }}
                   >
-                    {/* Scaled image on hover (like FeaturedWork) */}
                     <MotionImg
                       src={t.src}
                       alt={t.alt || ""}
                       initial={false}
-                      animate={{ scale: active ? 1.08 : 1 }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      animate={{ scale: isActive ? 1.08 : 1.02 }}
+                      transition={{ duration: 0.55, ease: EASE_SLOW }}
                       style={{
                         width: "100%",
                         height: "100%",
@@ -252,25 +270,25 @@ export default function Hero() {
                       }}
                     />
 
-                    {/* Deepening gradient overlay on hover */}
+                    {/* overlay gradient */}
                     <MotionBox
                       initial={false}
-                      animate={{ opacity: active ? 1 : 0.8 }}
+                      animate={{ opacity: isActive ? 0.98 : 0.8 }}
                       transition={{ duration: 0.35 }}
                       sx={{
                         position: "absolute",
                         inset: 0,
                         background:
-                          "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 65%, rgba(0,0,0,.75) 100%)",
+                          "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 65%, rgba(0,0,0,.78) 100%)",
                       }}
                     />
 
-                    {/* Bottom caption + inline CTA */}
+                    {/* caption block */}
                     <motion.div
-                      initial={{ opacity: 0.85, y: 10 }}
+                      initial={{ opacity: 0.9, y: 10 }}
                       animate={{
-                        opacity: active ? 1 : 0.85,
-                        y: active ? 0 : 10,
+                        opacity: isActive ? 1 : 0.9,
+                        y: isActive ? 0 : 10,
                       }}
                       transition={{ duration: 0.35 }}
                       style={{
@@ -288,7 +306,7 @@ export default function Hero() {
                       >
                         <Typography
                           variant="h6"
-                          sx={{ fontWeight: 800, mb: 4 }}
+                          sx={{ fontWeight: 800, mb: 0 }}
                         >
                           {t.caption || t.alt || "Project"}
                         </Typography>
@@ -302,6 +320,46 @@ export default function Hero() {
                       </Typography>
                     </motion.div>
                   </MotionBox>
+
+                  {/* optional meta / teaser below image when expanded */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        key={`meta-${i}`}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.3 }}
+                        style={{ padding: 12, background: "rgba(0,0,0,0.02)" }}
+                      >
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{ mb: 1 }}
+                        >
+                          {t.teaser ||
+                            t.description ||
+                            "Click to open a snapshot view."}
+                        </Typography>
+                        <Stack direction="row" spacing={1}>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            onClick={() => view(i)}
+                          >
+                            Open
+                          </Button>
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={() => setHover(null)}
+                          >
+                            Close
+                          </Button>
+                        </Stack>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               );
             })}
@@ -352,7 +410,7 @@ export default function Hero() {
                   initial={{ opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.6, ease: EASE_SLOW }}
                   style={{
                     width: "100%",
                     height: "100%",
