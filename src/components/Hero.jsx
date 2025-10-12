@@ -229,7 +229,7 @@ export default function Hero() {
                     display: "flex",
                     flexDirection: "column",
                     flex: isActive ? flexActive : flexInactive,
-                    minWidth: 140,
+                    minWidth: { xs: "100%", sm: 240, md: 360 },
                     borderRadius: 16,
                     overflow: "hidden",
                     cursor: "pointer",
