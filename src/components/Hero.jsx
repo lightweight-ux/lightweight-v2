@@ -202,7 +202,7 @@ export default function Hero() {
           <Box
             sx={{
               display: "flex",
-              gap: 12,
+              gap: 4,
               alignItems: "stretch",
               overflow: "hidden",
               // give a subtle perspective on large screens
@@ -322,7 +322,7 @@ export default function Hero() {
                   </MotionBox>
 
                   {/* optional meta / teaser below image when expanded */}
-                  <AnimatePresence>
+                  <AnimatePresence mode="wait">
                     {isActive && (
                       <motion.div
                         key={`meta-${i}`}
