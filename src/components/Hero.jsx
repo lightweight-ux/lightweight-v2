@@ -179,29 +179,40 @@ export default function Hero() {
             {site.hero.subhead}
           </MotionTypography>
 
-          {/* CTAs */}
-          <MotionBox
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.65, ease: EASE_SLOW }}
-          >
-            <Stack direction="row" spacing={2}>
-              <Button
-                size="large"
-                variant="contained"
-                href={site.brand.ctaLink}
-              >
-                {site.brand.ctaPrimary}
-              </Button>
-              <Button size="large" variant="outlined" href="#work">
-                {site.brand.ctaSecondary}
-              </Button>
-            </Stack>
-          </MotionBox>
-        </Stack>
+          /* CTAs */}
+                <MotionBox
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.1, delay: 0.65, ease: EASE_SLOW }}
+                >
+                <Stack direction="row" spacing={2}>
+                  <Button
+                  size="large"
+                  variant="contained"
+                  href={site.brand.ctaLink}
+                  >
+                  {site.brand.ctaPrimary}
+                  </Button>
+                  <Button size="large" variant="outlined" href="#work">
+                  {site.brand.ctaSecondary}
+                  </Button>
+                </Stack>
+                </MotionBox>
+              </Stack>
 
-        {/* — HORIZONTAL ACCORDION TILES — */}
-        <MotionBox
+              {/* Ensure the horizontal accordion container has a fixed min-height on md+ so layout
+                doesn't change when an item reveals its meta area on hover (prevents page jump) */}
+              <style>{`
+                @media (min-width: 900px) {
+                /* target the Box that holds the tiles (role="list", aria-label="Featured tiles") */
+                .hero-glow [role="list"][aria-label="Featured tiles"] {
+                  min-height: 460px;
+                }
+                }
+              `}</style>
+
+              {/* — HORIZONTAL ACCORDION TILES — */}
+  <MotionBox
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 0.6, ease: EASE_SLOW }}
