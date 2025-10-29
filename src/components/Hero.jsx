@@ -178,8 +178,6 @@ export default function Hero() {
           >
             {site.hero.subhead}
           </MotionTypography>
-
-          /* CTAs */}
                 <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
