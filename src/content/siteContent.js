@@ -31,15 +31,15 @@ const site = {
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fpexels-harold-vasquez-853421-2653362%20(2).jpg?alt=media&token=66e49f4b-2961-42e0-811e-7d669250ba2c",
-        alt: "Software developer at work"
+        alt: "We build to your specs."
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Ftechnek%2Fpexels-edmond-dantes-8068257%20(1).jpg?alt=media&token=0751014f-f6d7-4520-b876-7df906bcf5d6",
-        alt: "Consulting with a client"
+        alt: "Let's eliminate pain points."
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fproduct-box.jpg?alt=media&token=34e7581f-df26-4080-bcc2-bd9d34f8bc1f",
-        alt: "Lightweight product box"
+        alt: "Reduce waste, increase your margins."
       }
     ]
   },
