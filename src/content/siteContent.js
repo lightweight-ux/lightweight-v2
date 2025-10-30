@@ -26,8 +26,8 @@ const site = {
         alt: "What are you dreaming of?"
       },
       {
-        src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-profile-pic-size-2.png?alt=media&token=7b7654c5-bbf5-4096-95b1-a2ca72da73f0",
-        alt: "Lightweight icon"
+        src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2F20251007_151231.jpg?alt=media&token=e5cea61c-ef97-4684-bafb-81fc4c3ee0b3",
+        alt: "MenuOS"
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fpexels-harold-vasquez-853421-2653362%20(2).jpg?alt=media&token=66e49f4b-2961-42e0-811e-7d669250ba2c",
@@ -73,7 +73,7 @@ const site = {
     }
   ],
   showcase: [
-    { title: "DFW Painters LLC", tag: "Web App & Smart Invoicing App", href: "https://www.dfwpaintersllc.com", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2F20251007_151231.jpg?alt=media&token=e5cea61c-ef97-4684-bafb-81fc4c3ee0b3" },
+    { title: "DFW Painters LLC", tag: "Web App & Smart Invoicing App", href: "https://www.dfwpaintersllc.com", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2FScreenshot_20251029_201825_Chrome.jpg?alt=media&token=45538974-c848-465f-8c9d-8a20099e3229" },
     { title: "Ever So Fresh", tag: "Intelligence Powered Booking Web App", href: "https://www.eversofreshbarberlounge.com/", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-one.png?alt=media&token=ce4bf904-7d32-47ca-9f64-644c0f4390ca" },
     { title: "Girl UpRising", tag: "Non-Profit Web App", href: "https://www.girluprising.org", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-two.png?alt=media&token=608290bf-c316-447c-81fb-f74ec370699a" },
     { title: "Brown's Backyard BBQ Catering", tag: "Restaurant Catering Web App", href: "https://www.brownsbackyardbbq.online/", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fbbq-screenshot.png?alt=media&token=ed30b60d-04d3-4c23-8ddc-8c644fb416c9" },
