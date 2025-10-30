@@ -23,7 +23,7 @@ const site = {
     tiles: [
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2FIm-thinking.jpg?alt=media&token=2d43d5d1-3f59-49b6-8101-38665d0f4351",
-        alt: "I'm thinking"
+        alt: "What are you dreaming of?"
       },
       {
         src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-profile-pic-size-2.png?alt=media&token=7b7654c5-bbf5-4096-95b1-a2ca72da73f0",
@@ -73,6 +73,7 @@ const site = {
     }
   ],
   showcase: [
+    { title: "DFW Painters LLC", tag: "Web App & Smart Invoicing App", href: "https://www.dfwpaintersllc.com", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2F20251007_151231.jpg?alt=media&token=e5cea61c-ef97-4684-bafb-81fc4c3ee0b3" },
     { title: "Ever So Fresh", tag: "Intelligence Powered Booking Web App", href: "https://www.eversofreshbarberlounge.com/", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-one.png?alt=media&token=ce4bf904-7d32-47ca-9f64-644c0f4390ca" },
     { title: "Girl UpRising", tag: "Non-Profit Web App", href: "https://www.girluprising.org", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Flightweight-card-two.png?alt=media&token=608290bf-c316-447c-81fb-f74ec370699a" },
     { title: "Brown's Backyard BBQ Catering", tag: "Restaurant Catering Web App", href: "https://www.brownsbackyardbbq.online/", src: "https://firebasestorage.googleapis.com/v0/b/stone-baked-pizza-client.firebasestorage.app/o/media%2Flightweight%2Fbbq-screenshot.png?alt=media&token=ed30b60d-04d3-4c23-8ddc-8c644fb416c9" },
