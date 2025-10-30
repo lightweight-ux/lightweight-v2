@@ -17,8 +17,7 @@ const site = {
   },
   hero: {
     headline: "Build it. Ship it. Grow it.",
-    subhead:
-      "We design lightning-fast sites, AI-powered apps, and scroll-stopping content — then turn it into real leads.",
+    subhead: "We design lightning-fast sites, AI-powered web apps, and scroll-stopping content — generating qualified leads.",
     badges: ["Web & Apps", "Social Growth", "AI Automation", "Niche Software Tools"],
     tiles: [
       {
@@ -54,7 +53,7 @@ const site = {
       ]
     },
     {
-      title: "Sites, Stores & Web Apps",
+      title: "Sites, eCommerce & Web Apps",
       price: "Sites from $500 + ~$34/mo • Web Apps from $1,000 + ~$30/mo",
       bullets: [
         "Conversion-first design & copy",
